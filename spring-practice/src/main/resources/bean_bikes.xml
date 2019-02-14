@@ -16,9 +16,9 @@
         <constructor-arg name="bikeParams" ref="bikeParams" />
     </bean>
     <bean id="bikeParams"    class="com.javapractice.model.bike.BikeParams" scope="prototype">
-        <constructor-arg name="vehicles" value="" />
-        <constructor-arg name="time" value="" />
-        <constructor-arg name="costPerTimeUnit" value="" />
+        <constructor-arg name="vehicles" type="int" value="0" />
+        <constructor-arg name="time" type="int" value="0" />
+        <constructor-arg name="costPerTimeUnit" type="int" value="0" />
         <constructor-arg name="timeUnit" value="" />
     </bean>
 
