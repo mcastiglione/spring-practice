@@ -15,14 +15,17 @@ public class Company {
 
         ApplicationContext ctx = new ClassPathXmlApplicationContext("bean.xml");
 
-        BikeParams bikeParams = (BikeParams)ctx.getBean(BikeParams.class, 1, 1, 1, "car");
+        BikeParams bikeParams;
 
-        System.out.println(bikeParams.getTimeUnit());
+        bikeParams = (BikeParams)ctx.getBean(BikeParams.class, 1, 1, "day");
+
+        System.out.println(bikeParams.getTime());
 
         RentBikeDay rentBikeDay= (RentBikeDay)ctx.getBean(RentBikeDay.class, bikeParams);
 
-        System.out.println(rentBikeDay);
+        rentBikeDay.calculateFee();
 
+        System.out.println(rentBikeDay.showData());
 
     }
 }

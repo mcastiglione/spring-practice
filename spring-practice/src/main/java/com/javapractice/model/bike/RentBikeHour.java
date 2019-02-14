@@ -7,7 +7,12 @@ public class RentBikeHour implements Rental {
     private BikeParams bikeParams;
 
     public RentBikeHour(BikeParams bikeParams) {
+        System.out.println("rbh!");
         this.bikeParams = bikeParams;
+        this.bikeParams.setCostPerTimeUnit(Integer.parseInt(file.getProperty("bike.hour")));
+    }
+
+    public RentBikeHour() {
     }
 
     public boolean isInfoOK() {
@@ -16,6 +21,7 @@ public class RentBikeHour implements Rental {
 
     public void calculateFee() {
         Double fee = this.bikeParams.getVehicles().doubleValue()*this.bikeParams.getTime().doubleValue()*this.bikeParams.getCostPerTimeUnit().doubleValue();
+        System.out.println(fee);
         this.bikeParams.setFee(fee);
     }
 
@@ -29,5 +35,9 @@ public class RentBikeHour implements Rental {
 
     public Integer getQty() {
         return this.bikeParams.getVehicles();
+    }
+
+    public String showData() {
+        return new String("You will rent " + this.bikeParams.getVehicles() + " bikes for " + this.bikeParams.getTime() + " hours for a total fee of " + this.bikeParams.getFee());
     }
 }

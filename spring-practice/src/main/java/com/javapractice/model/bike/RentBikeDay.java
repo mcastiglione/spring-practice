@@ -7,7 +7,13 @@ public class RentBikeDay implements Rental {
     private BikeParams bikeParams;
 
     public RentBikeDay (BikeParams bikeParams) {
+        System.out.println("rbd!");
         this.bikeParams = bikeParams;
+        this.bikeParams.setCostPerTimeUnit(Integer.parseInt(file.getProperty("bike.day")));
+    }
+
+    public RentBikeDay () {
+        System.out.println("it works!");
     }
 
     public boolean isInfoOK() {
@@ -29,6 +35,10 @@ public class RentBikeDay implements Rental {
 
     public Integer getQty() {
         return this.bikeParams.getVehicles();
+    }
+
+    public String showData() {
+        return new String("You will rent " + this.bikeParams.getVehicles() + " bikes for " + this.bikeParams.getTime() + " days for a total fee of " + this.bikeParams.getFee());
     }
 
 }

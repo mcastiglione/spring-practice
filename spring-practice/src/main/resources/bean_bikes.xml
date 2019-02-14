@@ -6,20 +6,9 @@
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="rentBikeHour" class="com.javapractice.model.bike.RentBikeHour">
-        <constructor-arg name="bikeParams" ref="bikeParams" />
-    </bean>
-    <bean id="rentBikeDay"    class="com.javapractice.model.bike.RentBikeDay">
-        <constructor-arg name="bikeParams" ref="bikeParams" />
-    </bean>
-    <bean id="rentBikeWeek"    class="com.javapractice.model.bike.RentBikeWeek">
-        <constructor-arg name="bikeParams" ref="bikeParams" />
-    </bean>
-    <bean id="bikeParams"    class="com.javapractice.model.bike.BikeParams" scope="prototype">
-        <constructor-arg name="vehicles" type="int" value="0" />
-        <constructor-arg name="time" type="int" value="0" />
-        <constructor-arg name="costPerTimeUnit" type="int" value="0" />
-        <constructor-arg name="timeUnit" value="" />
-    </bean>
+    <bean id="rentBikeHour" class="com.javapractice.model.bike.RentBikeHour" scope="prototype"></bean>
+    <bean id="rentBikeDay"  class="com.javapractice.model.bike.RentBikeDay" scope="prototype"></bean>
+    <bean id="rentBikeWeek" class="com.javapractice.model.bike.RentBikeWeek" scope="prototype"></bean>
+    <bean id="bikeParams"   class="com.javapractice.model.bike.BikeParams" scope="prototype"></bean>
 
 </beans>

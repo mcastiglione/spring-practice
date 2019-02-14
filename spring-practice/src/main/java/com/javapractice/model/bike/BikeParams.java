@@ -9,11 +9,15 @@ public class BikeParams {
     private Integer costPerTimeUnit;
     private String timeUnit;
 
-    public BikeParams(int vehicles, int time, int costPerTimeUnit, String timeUnit) {
+    public BikeParams(int vehicles, int time, String timeUnit) {
+        System.out.println("bp!");
         this.vehicles = vehicles;
         this.time = time;
-        this.costPerTimeUnit = costPerTimeUnit;
         this.timeUnit = timeUnit;
+    }
+
+    public BikeParams() {
+        System.out.println("bpd!");
     }
 
     public void setFee(Double fee) {

@@ -8,6 +8,10 @@ public class RentBikeWeek implements Rental {
 
     public RentBikeWeek(BikeParams bikeParams) {
         this.bikeParams = bikeParams;
+        this.bikeParams.setCostPerTimeUnit(Integer.parseInt(file.getProperty("bike.week")));
+    }
+
+    public RentBikeWeek() {
     }
 
     public boolean isInfoOK() {
@@ -29,5 +33,9 @@ public class RentBikeWeek implements Rental {
 
     public Integer getQty() {
         return this.bikeParams.getVehicles();
+    }
+
+    public String showData() {
+        return new String("You will rent " + this.bikeParams.getVehicles() + " bikes for " + this.bikeParams.getTime() + " weeks for a total fee of " + this.bikeParams.getFee());
     }
 }
