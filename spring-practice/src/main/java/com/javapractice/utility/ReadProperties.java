@@ -3,13 +3,9 @@ package com.javapractice.utility;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.Set;
-
-import org.apache.log4j.Logger;
 
 public class ReadProperties {
 
-    final static Logger logger = Logger.getLogger(ReadProperties.class);
 
     private static Properties props;
 
@@ -20,7 +16,7 @@ public class ReadProperties {
             in = ClassLoader.class.getResourceAsStream("/config.properties");
             props.load(in);
         } catch (IOException e) {
-            logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -38,10 +34,6 @@ public class ReadProperties {
 
     public String getProperty(String key) {
         return props.getProperty(key);
-    }
-
-    public Set<String> getAllPropertyNames() {
-        return props.stringPropertyNames();
     }
 
     public boolean containsKey(String key) {

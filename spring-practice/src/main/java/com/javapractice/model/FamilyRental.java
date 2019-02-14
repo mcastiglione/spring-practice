@@ -1,10 +1,10 @@
 package com.javapractice.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface FamilyRental {
-    public boolean checkInfo();
-    public void calculateFee(ArrayList<Rental> rentals, int discount);
+    public boolean isInfoOK();
+    public void calculateFee(List<Rental> rentals, int discount);
     public Double getFee();
     public Integer getQty();
 }

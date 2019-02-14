@@ -1,53 +1,34 @@
 package com.javapractice.model.bike;
 
 import com.javapractice.model.Rental;
-import com.javapractice.utility.ReadProperties;
 
 public class RentBikeDay implements Rental {
 
-    private Double fee;
+    private BikeParams bikeParams;
 
-    private Integer bikes;
-
-    private Integer days;
-
-    private Integer costPerDay;
-
-    public RentBikeDay() {
-        this.costPerDay = Integer.parseInt(file.getProperty("bike.day"));
+    public RentBikeDay (BikeParams bikeParams) {
+        this.bikeParams = bikeParams;
     }
 
-    @Override
-    public boolean checkInfo() {
-        // TODO Auto-generated method stub
+    public boolean isInfoOK() {
         return false;
     }
 
-    public void calculateFee(int bikes, int days) {
-        this.bikes = bikes;
-        this.days = days;
-        this.fee = this.bikes.doubleValue()*this.days.doubleValue()*costPerDay.doubleValue();
+    public void calculateFee() {
+        Double fee = this.bikeParams.getVehicles().doubleValue()*this.bikeParams.getTime().doubleValue()*this.bikeParams.getCostPerTimeUnit().doubleValue();
+        this.bikeParams.setFee(fee);
     }
 
-    @Override
+    public void logValues() {
+        System.out.println("not implemented");
+    }
+
     public Double getFee() {
-        return this.fee;
+        return this.bikeParams.getFee();
     }
 
     public Integer getQty() {
-        return this.bikes;
+        return this.bikeParams.getVehicles();
     }
 
-    public Integer getDays() {
-        return this.days;
-    }
-
-    public Integer getCostPerDay() {
-        return this.costPerDay;
-    }
-
-    @Override
-    public String toString() {
-        return new String("You will rent " + this.bikes + " bikes for " + this.days + " days for a total fee of " + this.fee);
-    }
 }

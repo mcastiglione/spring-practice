@@ -1,16 +1,11 @@
 package com.javapractice.model;
 
-//import com.javapractice.utility.DbReader;
-import com.javapractice.utility.ReadProperties;
-
+import com.javapractice.model.bike.BikeParams;
 
 public interface Rental {
-
-    //public static final DbReader db = DbReader.getInstance();
-    public static final ReadProperties file = ReadProperties.getInstance();
-
-    public boolean checkInfo();
-    public void calculateFee(int vehicleQty, int timeQty);
+    public boolean isInfoOK();
+    public void calculateFee();
+    public void logValues();
     public Double getFee();
     public Integer getQty();
 }
