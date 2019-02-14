@@ -1,14 +1,22 @@
-package com.java.javapractice.model.car;
+package com.javapractice.model.car;
 
-import com.java.javapractice.model.Rental;
+import com.javapractice.model.Rental;
 
 public class RentCarHour implements Rental {
+
+    private Double fee;
+
+    private Integer bikes;
+
+    private Integer hours;
+
+    private Integer costPerHour;
 
     public boolean isInfoOK() {
         return false;
     }
 
-    public void calculateFee(int vehicleQty, int timeQty) {
+    public void calculateFee() {
 
     }
 

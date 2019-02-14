@@ -1,14 +1,18 @@
-package com.java.javapractice.model.bike;
+package com.javapractice.model.car;
 
-import com.java.javapractice.model.Rental;
+import com.javapractice.model.Rental;
 
-public class RentBikeWeek implements Rental {
+public class RentCarDay implements Rental {
+
+
+    private CarParams carParams;
+
 
     public boolean isInfoOK() {
         return false;
     }
 
-    public void calculateFee(int vehicleQty, int timeQty) {
+    public void calculateFee() {
 
     }
 

@@ -1,4 +1,4 @@
-package com.java.javapractice.model;
+package com.javapractice.model;
 
 import java.util.List;
 

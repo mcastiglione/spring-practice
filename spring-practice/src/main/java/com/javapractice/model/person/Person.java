@@ -1,4 +1,4 @@
-package com.java.javapractice.model.person;
+package com.javapractice.model.person;
 
 public class Person {
     private String name;
