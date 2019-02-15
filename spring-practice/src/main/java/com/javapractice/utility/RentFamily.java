@@ -53,7 +53,7 @@ public class RentFamily implements FamilyRental {
         return this.Qty;
     }
 
-    public String showData() {
+    public String printData() {
         this.rentals.stream().forEach(y->System.out.println(y.printData()));
         return new String("end!");
     }

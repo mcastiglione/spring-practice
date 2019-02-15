@@ -7,5 +7,5 @@ public interface FamilyRental {
     public Double getFee();
     public Integer getQty();
     public Integer getDiscount();
-    public String showData();
+    public String printData();
 }

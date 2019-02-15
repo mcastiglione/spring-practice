@@ -90,7 +90,7 @@ public class Company {
 
         fRental.calculateFee();
 
-        fRental.showData();
+        fRental.printData();
 
         System.out.println("Fee:");
         System.out.println(fRental.getFee());
@@ -163,7 +163,7 @@ public class Company {
 
         fRental.calculateFee();
 
-        fRental.showData();
+        fRental.printData();
 
         System.out.println("Fee:");
         System.out.println(fRental.getFee());
@@ -194,7 +194,7 @@ public class Company {
 
         fRentalMix.calculateFee();
 
-        fRentalMix.showData();
+        fRentalMix.printData();
 
         System.out.println("Fee:");
         System.out.println(fRentalMix.getFee());
