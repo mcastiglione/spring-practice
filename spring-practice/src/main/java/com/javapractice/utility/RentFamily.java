@@ -24,6 +24,11 @@ public class RentFamily implements FamilyRental {
     public RentFamily() {
     }
 
+    public void setRentals(ArrayList<Rental> rentals) {
+        this.fee = 0.0;
+        this.rentals = rentals;
+    }
+
     public boolean checkInfo() {
         if (Qty > 5 || Qty < 3) {
             return false;

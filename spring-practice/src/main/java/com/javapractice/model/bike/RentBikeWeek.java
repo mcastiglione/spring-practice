@@ -1,22 +1,27 @@
 package com.javapractice.model.bike;
 
+import com.javapractice.model.Params;
 import com.javapractice.model.Rental;
 import org.springframework.beans.factory.annotation.Value;
 
 public class RentBikeWeek implements Rental {
 
-    private BikeParams bikeParams;
+    private Params params;
 
     @Value( "${bike.week}" )
     private Integer costPerTimeUnit;
 
     private Double fee;
 
-    public RentBikeWeek(BikeParams bikeParams) {
-        this.bikeParams = bikeParams;
+    public RentBikeWeek(Params params) {
+        this.params = params;
     }
 
     public RentBikeWeek() {
+    }
+
+    public void setParams(Params params) {
+        this.params = params;
     }
 
     public boolean isInfoOK() {
@@ -24,7 +29,7 @@ public class RentBikeWeek implements Rental {
     }
 
     public void calculateFee() {
-        this.fee = this.bikeParams.getVehicles().doubleValue()*this.bikeParams.getTime().doubleValue()*this.costPerTimeUnit.doubleValue();
+        this.fee = this.params.getVehicles().doubleValue()*this.params.getTime().doubleValue()*this.costPerTimeUnit.doubleValue();
     }
 
     public void logValues() {
@@ -36,7 +41,7 @@ public class RentBikeWeek implements Rental {
     }
 
     public Integer getQty() {
-        return this.bikeParams.getVehicles();
+        return this.params.getVehicles();
     }
 
     public void setCostPerTimeUnit(Integer costPerTimeUnit) {
@@ -44,6 +49,6 @@ public class RentBikeWeek implements Rental {
     }
 
     public String printData() {
-        return new String("You will rent " + this.bikeParams.getVehicles() + " bikes for " + this.bikeParams.getTime() + " weeks for a total fee of " + this.fee);
+        return new String("You will rent " + this.params.getVehicles() + " bikes for " + this.params.getTime() + " weeks for a total fee of " + this.fee);
     }
 }

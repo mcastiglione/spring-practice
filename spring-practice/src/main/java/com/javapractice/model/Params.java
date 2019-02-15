@@ -1,16 +1,16 @@
-package com.javapractice.model.car;
+package com.javapractice.model;
 
-public class CarParams {
+public class Params  {
 
     private Integer vehicles;
     private Integer time;
 
-    public CarParams(int vehicles, int time) {
+    public Params(int vehicles, int time) {
         this.vehicles = vehicles;
         this.time = time;
     }
 
-    public CarParams() {
+    public Params() {
     }
 
     public Integer getVehicles() {

@@ -7,4 +7,5 @@ public interface Rental {
     public Double getFee();
     public Integer getQty();
     public String printData();
+    public void setParams(Params params);
 }
