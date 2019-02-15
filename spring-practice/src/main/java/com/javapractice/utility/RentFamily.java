@@ -2,6 +2,7 @@ package com.javapractice.utility;
 
 import com.javapractice.model.FamilyRental;
 import com.javapractice.model.Rental;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ public class RentFamily implements FamilyRental {
 
     private ArrayList<Rental> rentals;
 
+    @Value( "${family.discount}" )
     private Integer discount;
 
     private Integer Qty = 0;

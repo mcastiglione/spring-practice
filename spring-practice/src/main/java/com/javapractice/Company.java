@@ -1,5 +1,6 @@
 package com.javapractice;
 
+import com.javapractice.config.Config;
 import com.javapractice.model.FamilyRental;
 import com.javapractice.model.Rental;
 import com.javapractice.model.car.CarParams;
@@ -8,7 +9,7 @@ import com.javapractice.model.car.RentCarHour;
 import com.javapractice.model.car.RentCarWeek;
 import com.javapractice.utility.RentFamily;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.javapractice.model.bike.RentBikeDay;
 import com.javapractice.model.bike.RentBikeHour;
@@ -26,7 +27,7 @@ public class Company {
 
         //Application context
 
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("bean.xml");
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(Config.class);
 
         //bikeParams
         BikeParams bikeParams;
@@ -34,6 +35,8 @@ public class Company {
         //Case bike hour
 
         bikeParams = ctx.getBean(BikeParams.class, 1, 1);
+
+        System.out.println(bikeParams.getVehicles());
 
         Rental rentBikeHour = ctx.getBean(RentBikeHour.class, bikeParams);
         rentBikeHour.calculateFee();

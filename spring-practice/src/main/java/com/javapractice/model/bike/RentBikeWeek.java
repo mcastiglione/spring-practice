@@ -1,11 +1,13 @@
 package com.javapractice.model.bike;
 
 import com.javapractice.model.Rental;
+import org.springframework.beans.factory.annotation.Value;
 
 public class RentBikeWeek implements Rental {
 
     private BikeParams bikeParams;
 
+    @Value( "${bike.week}" )
     private Integer costPerTimeUnit;
 
     private Double fee;
