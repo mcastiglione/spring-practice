@@ -4,31 +4,44 @@ import com.javapractice.model.Rental;
 
 public class RentCarHour implements Rental {
 
+    private CarParams carParams;
+
+    private Integer costPerTimeUnit;
+
     private Double fee;
 
-    private Integer bikes;
+    public RentCarHour(CarParams carParams) {
+        this.carParams = carParams;
+    }
 
-    private Integer hours;
-
-    private Integer costPerHour;
+    public RentCarHour() {
+    }
 
     public boolean isInfoOK() {
         return false;
     }
 
     public void calculateFee() {
-
+        this.fee = this.carParams.getVehicles().doubleValue()*this.carParams.getTime().doubleValue()*this.costPerTimeUnit;
     }
 
     public void logValues() {
-
+        System.out.println("not implemented");
     }
 
     public Double getFee() {
-        return null;
+        return this.fee;
     }
 
     public Integer getQty() {
-        return null;
+        return this.carParams.getVehicles();
+    }
+
+    public void setCostPerTimeUnit(Integer costPerTimeUnit) {
+        this.costPerTimeUnit = costPerTimeUnit;
+    }
+
+    public String printData() {
+        return new String("You will rent " + this.carParams.getVehicles() + " cars for " + this.carParams.getTime() + " hours for a total fee of " + this.fee);
     }
 }

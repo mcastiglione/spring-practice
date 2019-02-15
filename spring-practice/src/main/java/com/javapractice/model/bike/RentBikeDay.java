@@ -6,14 +6,15 @@ public class RentBikeDay implements Rental {
 
     private BikeParams bikeParams;
 
+    private Integer costPerTimeUnit;
+
+    private Double fee;
+
     public RentBikeDay (BikeParams bikeParams) {
-        System.out.println("rbd!");
         this.bikeParams = bikeParams;
-        this.bikeParams.setCostPerTimeUnit(Integer.parseInt(file.getProperty("bike.day")));
     }
 
     public RentBikeDay () {
-        System.out.println("it works!");
     }
 
     public boolean isInfoOK() {
@@ -21,8 +22,7 @@ public class RentBikeDay implements Rental {
     }
 
     public void calculateFee() {
-        Double fee = this.bikeParams.getVehicles().doubleValue()*this.bikeParams.getTime().doubleValue()*this.bikeParams.getCostPerTimeUnit().doubleValue();
-        this.bikeParams.setFee(fee);
+        this.fee = this.bikeParams.getVehicles().doubleValue()*this.bikeParams.getTime().doubleValue()*this.costPerTimeUnit.doubleValue();
     }
 
     public void logValues() {
@@ -30,15 +30,18 @@ public class RentBikeDay implements Rental {
     }
 
     public Double getFee() {
-        return this.bikeParams.getFee();
+        return this.fee;
     }
 
     public Integer getQty() {
         return this.bikeParams.getVehicles();
     }
 
-    public String showData() {
-        return new String("You will rent " + this.bikeParams.getVehicles() + " bikes for " + this.bikeParams.getTime() + " days for a total fee of " + this.bikeParams.getFee());
+    public void setCostPerTimeUnit(Integer costPerTimeUnit) {
+        this.costPerTimeUnit = costPerTimeUnit;
     }
 
+    public String printData() {
+        return new String("You will rent " + this.bikeParams.getVehicles() + " bikes for " + this.bikeParams.getTime() + " days for a total fee of " + this.fee);
+    }
 }

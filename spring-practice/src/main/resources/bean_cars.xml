@@ -6,9 +6,15 @@
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="rentCarHour"    class="com.javapractice.model.car.RentCarHour"></bean>
-    <bean id="rentCarDay"    class="com.javapractice.model.car.RentCarDay"></bean>
-    <bean id="rentCarWeek"    class="com.javapractice.model.car.RentCarWeek"></bean>
+    <bean id="rentCarHour"    class="com.javapractice.model.car.RentCarHour" scope="prototype">
+        <property name="costPerTimeUnit" value="${car.hour}"/>
+    </bean>
+    <bean id="rentCarDay"    class="com.javapractice.model.car.RentCarDay" scope="prototype">
+        <property name="costPerTimeUnit" value="${car.day}"/>
+    </bean>
+    <bean id="rentCarWeek"    class="com.javapractice.model.car.RentCarWeek" scope="prototype">
+        <property name="costPerTimeUnit" value="${car.week}"/>
+    </bean>
     <bean id="carParams"    class="com.javapractice.model.car.CarParams" scope="prototype"></bean>
 
 </beans>

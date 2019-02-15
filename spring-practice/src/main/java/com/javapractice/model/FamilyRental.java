@@ -1,10 +1,11 @@
 package com.javapractice.model;
 
-import java.util.List;
-
 public interface FamilyRental {
     public boolean isInfoOK();
-    public void calculateFee(List<Rental> rentals, int discount);
+    public void calculateFee();
+    public void logValues();
     public Double getFee();
     public Integer getQty();
+    public Integer getDiscount();
+    public String showData();
 }
