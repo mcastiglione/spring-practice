@@ -8,16 +8,16 @@ public class RentBikeDay implements Rental {
 
     private Params params;
 
-    @Value( "${bike.day}" )
+    @Value("${bike.day}")
     private Integer costPerTimeUnit;
 
     private Double fee;
 
-    public RentBikeDay (Params params) {
+    public RentBikeDay(Params params) {
         this.params = params;
     }
 
-    public RentBikeDay () {
+    public RentBikeDay() {
     }
 
     public void setParams(Params params) {
@@ -29,7 +29,7 @@ public class RentBikeDay implements Rental {
     }
 
     public void calculateFee() {
-        this.fee = this.params.getVehicles().doubleValue()*this.params.getTime().doubleValue()*this.costPerTimeUnit.doubleValue();
+        this.fee = this.params.getVehicles().doubleValue() * this.params.getTime().doubleValue() * this.costPerTimeUnit.doubleValue();
     }
 
     public void logValues() {
@@ -48,6 +48,6 @@ public class RentBikeDay implements Rental {
     }
 
     public String data() {
-        return new String("You will rent " + this.params.getVehicles() + " bikes for " + this.params.getTime() + " days for a total fee of " + this.fee);
+        return "You will rent " + this.params.getVehicles() + " bikes for " + this.params.getTime() + " days for a total fee of " + this.fee;
     }
 }

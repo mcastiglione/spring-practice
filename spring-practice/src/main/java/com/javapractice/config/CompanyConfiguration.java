@@ -2,7 +2,6 @@ package com.javapractice.config;
 
 import com.javapractice.Company;
 import com.javapractice.model.Params;
-import com.javapractice.model.Rental;
 import com.javapractice.model.bike.RentBikeDay;
 import com.javapractice.model.bike.RentBikeHour;
 import com.javapractice.model.bike.RentBikeWeek;
@@ -14,8 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
-
-import java.util.ArrayList;
 
 @Configuration
 @PropertySource("classpath:config.properties")

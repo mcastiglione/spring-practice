@@ -3,12 +3,19 @@ package com.javapractice.model;
 import java.util.ArrayList;
 
 public interface FamilyRental {
-    public boolean isInfoOK();
-    public void calculateFee();
-    public void logValues();
-    public Double getFee();
-    public Integer getQty();
-    public Integer getDiscount();
-    public String data();
-    public void setRentals(ArrayList<String[]> rentals);
+    boolean isInfoOK();
+
+    void calculateFee();
+
+    void logValues();
+
+    Double getFee();
+
+    Integer getQty();
+
+    Integer getDiscount();
+
+    String data();
+
+    void setRentals(ArrayList<String[]> rentals);
 }

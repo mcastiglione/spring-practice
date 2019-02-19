@@ -1,6 +1,6 @@
 package com.javapractice.model;
 
-public class Params  {
+public class Params {
 
     private Integer vehicles;
     private Integer time;

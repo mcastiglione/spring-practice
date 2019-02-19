@@ -1,7 +1,6 @@
 package com.javapractice;
 
 import com.javapractice.config.CompanyConfiguration;
-import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -13,7 +12,7 @@ public class Main {
 
         Company company = ctx.getBean(Company.class);
 
-        System.out.println(company.rentBikeHour(1,1));
+        System.out.println(company.rentBikeHour(1, 1));
 
         String[] rental1 = {"RentBikeHour", "4", "4"};
         String[] rental2 = {"RentCarWeek", "4", "1"};

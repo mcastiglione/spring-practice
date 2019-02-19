@@ -1,7 +1,6 @@
 package com.javapractice.utility;
 
 import com.javapractice.model.FamilyRental;
-import com.javapractice.model.Rental;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ public class RentFamily implements FamilyRental {
 
     private ArrayList<String[]> rentals;
 
-    @Value( "${family.discount}" )
+    @Value("${family.discount}")
     private Integer discount;
 
     private Integer Qty = 0;
@@ -30,12 +29,8 @@ public class RentFamily implements FamilyRental {
     }
 
     public boolean checkInfo() {
-        this.rentals.stream().forEach(y->this.Qty += Integer.parseInt(y[3]));
-        if (Qty > 5 || Qty < 3) {
-            return false;
-        } else {
-            return true;
-        }
+        this.rentals.stream().forEach(y -> this.Qty += Integer.parseInt(y[3]));
+        return Qty <= 5 && Qty >= 3;
     }
 
     public boolean isInfoOK() {
@@ -43,8 +38,8 @@ public class RentFamily implements FamilyRental {
     }
 
     public void calculateFee() {
-        this.rentals.stream().forEach(y->this.fee += Double.parseDouble(y[1]));
-        this.fee = this.fee - (this.fee/100*this.discount.doubleValue());
+        this.rentals.stream().forEach(y -> this.fee += Double.parseDouble(y[1]));
+        this.fee = this.fee - (this.fee / 100 * this.discount.doubleValue());
     }
 
     public void logValues() {
@@ -61,7 +56,7 @@ public class RentFamily implements FamilyRental {
 
     public String data() {
         ArrayList<String> data = new ArrayList<String>();
-        rentals.stream().forEach(y-> data.add(y[0]));
+        rentals.stream().forEach(y -> data.add(y[0]));
         return data.toString();
     }
 

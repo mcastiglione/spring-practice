@@ -1,15 +1,15 @@
 package com.javapractice;
+
 import com.javapractice.model.Params;
 import com.javapractice.model.Rental;
+import com.javapractice.model.bike.RentBikeDay;
+import com.javapractice.model.bike.RentBikeHour;
+import com.javapractice.model.bike.RentBikeWeek;
 import com.javapractice.model.car.RentCarDay;
 import com.javapractice.model.car.RentCarHour;
 import com.javapractice.model.car.RentCarWeek;
 import com.javapractice.utility.RentFamily;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.javapractice.model.bike.RentBikeDay;
-import com.javapractice.model.bike.RentBikeHour;
-import com.javapractice.model.bike.RentBikeWeek;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -58,7 +58,8 @@ public class Company {
 
         String[] result = {rentBikeHour.data(), rentBikeHour.getFee().toString(), time.toString(), vehicles.toString()};
 
-        return result;    }
+        return result;
+    }
 
     public String[] rentBikeDay(Integer time, Integer vehicles) {
 
@@ -72,7 +73,8 @@ public class Company {
 
         String[] result = {rentBikeDay.data(), rentBikeDay.getFee().toString(), time.toString(), vehicles.toString()};
 
-        return result;    }
+        return result;
+    }
 
     public String[] rentBikeWeek(Integer time, Integer vehicles) {
 
@@ -86,7 +88,8 @@ public class Company {
 
         String[] result = {rentBikeWeek.data(), rentBikeWeek.getFee().toString(), time.toString(), vehicles.toString()};
 
-        return result;    }
+        return result;
+    }
 
     public String[] rentCarHour(Integer time, Integer vehicles) {
 
@@ -100,7 +103,8 @@ public class Company {
 
         String[] result = {rentCarHour.data(), rentCarHour.getFee().toString(), time.toString(), vehicles.toString()};
 
-        return result;    }
+        return result;
+    }
 
     public String[] rentCarDay(Integer time, Integer vehicles) {
 
@@ -114,7 +118,8 @@ public class Company {
 
         String[] result = {rentCarDay.data(), rentCarDay.getFee().toString(), time.toString(), vehicles.toString()};
 
-        return result;    }
+        return result;
+    }
 
     public String[] rentCarWeek(Integer time, Integer vehicles) {
 
@@ -139,8 +144,8 @@ public class Company {
         Iterator iter = rentals.iterator();
 
         while (iter.hasNext()) {
-            String[] iRental = (String[])iter.next();
-            switch(iRental[0]) {
+            String[] iRental = (String[]) iter.next();
+            switch (iRental[0]) {
                 case "RentBikeHour":
                     oRental = rentBikeHour(Integer.parseInt(iRental[1]), Integer.parseInt(iRental[2]));
                     resultRentals.add(oRental);
@@ -175,7 +180,5 @@ public class Company {
         String[] oData = {rentFamily.data(), rentFamily.getFee().toString()};
 
         return oData;
-
     }
-
 }
