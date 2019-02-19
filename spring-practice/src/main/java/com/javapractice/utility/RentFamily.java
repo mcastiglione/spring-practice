@@ -10,26 +10,27 @@ public class RentFamily implements FamilyRental {
 
     private Double fee = 0.0;
 
-    private ArrayList<Rental> rentals;
+    private ArrayList<String[]> rentals;
 
     @Value( "${family.discount}" )
     private Integer discount;
 
     private Integer Qty = 0;
 
-    public RentFamily(ArrayList<Rental> rentals) {
+    public RentFamily(ArrayList<String[]> rentals) {
         this.rentals = rentals;
     }
 
     public RentFamily() {
     }
 
-    public void setRentals(ArrayList<Rental> rentals) {
+    public void setRentals(ArrayList<String[]> rentals) {
         this.fee = 0.0;
         this.rentals = rentals;
     }
 
     public boolean checkInfo() {
+        this.rentals.stream().forEach(y->this.Qty += Integer.parseInt(y[3]));
         if (Qty > 5 || Qty < 3) {
             return false;
         } else {
@@ -42,10 +43,8 @@ public class RentFamily implements FamilyRental {
     }
 
     public void calculateFee() {
-        this.rentals.stream().forEach(y->this.fee += y.getFee());
+        this.rentals.stream().forEach(y->this.fee += Double.parseDouble(y[1]));
         this.fee = this.fee - (this.fee/100*this.discount.doubleValue());
-
-        this.rentals.stream().forEach(y->this.Qty += y.getQty());
     }
 
     public void logValues() {
@@ -60,9 +59,10 @@ public class RentFamily implements FamilyRental {
         return this.Qty;
     }
 
-    public String printData() {
-        this.rentals.stream().forEach(y->System.out.println(y.printData()));
-        return new String("end!");
+    public String data() {
+        ArrayList<String> data = new ArrayList<String>();
+        rentals.stream().forEach(y-> data.add(y[0]));
+        return data.toString();
     }
 
     public void setDiscount(Integer discount) {

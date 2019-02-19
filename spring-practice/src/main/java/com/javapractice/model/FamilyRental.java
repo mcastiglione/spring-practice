@@ -9,6 +9,6 @@ public interface FamilyRental {
     public Double getFee();
     public Integer getQty();
     public Integer getDiscount();
-    public String printData();
-    public void setRentals(ArrayList<Rental> rentals);
+    public String data();
+    public void setRentals(ArrayList<String[]> rentals);
 }

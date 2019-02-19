@@ -19,13 +19,7 @@ import java.util.ArrayList;
 
 @Configuration
 @PropertySource("classpath:config.properties")
-public class SpringConfiguration {
-
-    @Bean
-    @Scope("prototype")
-    public RentBikeHour rentBikeHour(Params params) {
-        return new RentBikeHour(params);
-    }
+public class CompanyConfiguration {
 
     @Bean
     @Scope("prototype")
@@ -35,21 +29,8 @@ public class SpringConfiguration {
 
     @Bean
     @Scope("prototype")
-    public RentBikeDay rentBikeDay(Params params) {
-        return new RentBikeDay(params);
-    }
-
-    @Bean
-    @Scope("prototype")
     public RentBikeDay rentBikeDay() {
         return new RentBikeDay();
-    }
-
-
-    @Bean
-    @Scope("prototype")
-    public RentBikeWeek rentBikeWeek(Params params) {
-        return new RentBikeWeek(params);
     }
 
     @Bean
@@ -60,20 +41,8 @@ public class SpringConfiguration {
 
     @Bean
     @Scope("prototype")
-    public Params params(int vehicles, int time) {
-        return new Params(vehicles,time);
-    }
-
-    @Bean
-    @Scope("prototype")
     public Params params() {
         return new Params();
-    }
-
-    @Bean
-    @Scope("prototype")
-    public RentCarHour rentCarHour(Params params) {
-        return new RentCarHour(params);
     }
 
     @Bean
@@ -84,33 +53,14 @@ public class SpringConfiguration {
 
     @Bean
     @Scope("prototype")
-    public RentCarDay rentCarDay(Params params) {
-        return new RentCarDay(params);
-    }
-
-    @Bean
-    @Scope("prototype")
     public RentCarDay rentCarDay() {
         return new RentCarDay();
-    }
-
-
-    @Bean
-    @Scope("prototype")
-    public RentCarWeek rentCarWeek(Params params) {
-        return new RentCarWeek(params);
     }
 
     @Bean
     @Scope("prototype")
     public RentCarWeek rentCarWeek() {
         return new RentCarWeek();
-    }
-
-    @Bean
-    @Scope("prototype")
-    public RentFamily rentFamily(ArrayList<Rental> rentals) {
-        return new RentFamily(rentals);
     }
 
     @Bean

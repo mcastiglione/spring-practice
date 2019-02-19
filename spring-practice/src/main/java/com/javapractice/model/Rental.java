@@ -6,6 +6,6 @@ public interface Rental {
     public void logValues();
     public Double getFee();
     public Integer getQty();
-    public String printData();
+    public String data();
     public void setParams(Params params);
 }

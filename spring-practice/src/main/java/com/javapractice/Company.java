@@ -1,5 +1,4 @@
 package com.javapractice;
-
 import com.javapractice.model.Params;
 import com.javapractice.model.Rental;
 import com.javapractice.model.car.RentCarDay;
@@ -13,33 +12,19 @@ import com.javapractice.model.bike.RentBikeHour;
 import com.javapractice.model.bike.RentBikeWeek;
 
 import java.util.ArrayList;
-
+import java.util.Iterator;
 
 public class Company {
 
-    private static ArrayList<Rental> rentals;
+    private ArrayList<Rental> rentals;
 
-    public Company() {
-    }
+    Rental rental;
 
     @Autowired
     private Params params;
 
     @Autowired
-    private Params paramsF1;
-    @Autowired
-    private Params paramsF2;
-    @Autowired
-    private Params paramsF3;
-
-    @Autowired
-    private RentFamily rentFamily1;
-
-    @Autowired
-    private RentFamily rentFamily2;
-
-    @Autowired
-    private RentFamily rentFamily3;
+    private RentFamily rentFamily;
 
     @Autowired
     private RentCarHour rentCarHour;
@@ -59,219 +44,138 @@ public class Company {
     @Autowired
     private RentBikeWeek rentBikeWeek;
 
-    @Autowired
-    private RentCarHour fRentCarHour;
-
-    @Autowired
-    private RentCarDay fRentCarDay;
-
-    @Autowired
-    private RentCarWeek fRentCarWeek;
-
-    @Autowired
-    private RentBikeHour fMixRentBikeHour;
-
-    @Autowired
-    private RentCarWeek fMixRentCarWeek;
-
-
-
-
-    public void test() {
-        System.out.println("out!");
-        params.setTime(1);
-        System.out.println(params.getTime());
+    public Company() {
     }
 
-    public void run() {
-
+    public String[] rentBikeHour(Integer time, Integer vehicles) {
         //Case bike hour
 
-        params.setTime(1);
-        params.setVehicles(1);
+        params.setTime(time);
+        params.setVehicles(vehicles);
 
         rentBikeHour.setParams(params);
-
         rentBikeHour.calculateFee();
 
-        System.out.print("<-- Rent bike hour: ");
-        System.out.println(rentBikeHour.printData());
-        System.out.println("-->");
+        String[] result = {rentBikeHour.data(), rentBikeHour.getFee().toString(), time.toString(), vehicles.toString()};
 
+        return result;    }
+
+    public String[] rentBikeDay(Integer time, Integer vehicles) {
 
         //Case bike day
 
-        params.setTime(1);
-        params.setVehicles(2);
+        params.setTime(time);
+        params.setVehicles(vehicles);
 
         rentBikeDay.setParams(params);
         rentBikeDay.calculateFee();
 
-        System.out.print("<-- Rent bike day: ");
-        System.out.println(rentBikeDay.printData());
-        System.out.println("-->");
+        String[] result = {rentBikeDay.data(), rentBikeDay.getFee().toString(), time.toString(), vehicles.toString()};
+
+        return result;    }
+
+    public String[] rentBikeWeek(Integer time, Integer vehicles) {
 
         //Case bike week
 
-        params.setTime(1);
-        params.setVehicles(1);
+        params.setTime(time);
+        params.setVehicles(vehicles);
 
         rentBikeWeek.setParams(params);
         rentBikeWeek.calculateFee();
 
-        System.out.print("<-- Rent bike week: ");
-        System.out.println(rentBikeWeek.printData());
-        System.out.println("-->");
+        String[] result = {rentBikeWeek.data(), rentBikeWeek.getFee().toString(), time.toString(), vehicles.toString()};
 
-        //Case bike family
+        return result;    }
 
-        System.out.println("<-- Family rental bike: ");
-
-        rentals = new ArrayList<Rental>();
-
-        paramsF1.setTime(1);
-        paramsF1.setVehicles(3);
-        rentBikeHour.setParams(paramsF1);
-        rentBikeHour.calculateFee();
-
-        paramsF2.setTime(1);
-        paramsF2.setVehicles(3);
-        rentBikeDay.setParams(paramsF2);
-        rentBikeDay.calculateFee();
-
-        paramsF3.setTime(1);
-        paramsF3.setVehicles(3);
-        rentBikeWeek.setParams(paramsF3);
-        rentBikeWeek.calculateFee();
-
-
-        rentals.add(rentBikeHour);
-        rentals.add(rentBikeDay);
-        rentals.add(rentBikeWeek);
-
-        rentFamily1.setRentals(rentals);
-
-        rentFamily1.calculateFee();
-
-        rentFamily1.printData();
-
-        System.out.println("Fee:");
-        System.out.println(rentFamily1.getFee());
-        System.out.println("Discount:");
-        System.out.println(rentFamily1.getDiscount());
-
-        System.out.println("-->");
-
-        //Car cases
+    public String[] rentCarHour(Integer time, Integer vehicles) {
 
         //Case car hour
 
-        params.setTime(1);
-        params.setVehicles(1);
+        params.setTime(time);
+        params.setVehicles(vehicles);
 
         rentCarHour.setParams(params);
         rentCarHour.calculateFee();
 
-        System.out.print("<-- Rent car hour: ");
-        System.out.println(rentCarHour.printData());
-        System.out.println("-->");
+        String[] result = {rentCarHour.data(), rentCarHour.getFee().toString(), time.toString(), vehicles.toString()};
+
+        return result;    }
+
+    public String[] rentCarDay(Integer time, Integer vehicles) {
 
         //Case car day
 
-        params.setTime(1);
-        params.setVehicles(2);
+        params.setTime(time);
+        params.setVehicles(vehicles);
 
         rentCarDay.setParams(params);
         rentCarDay.calculateFee();
 
-        System.out.print("<-- Rent car day: ");
-        System.out.println(rentCarDay.printData());
-        System.out.println("-->");
+        String[] result = {rentCarDay.data(), rentCarDay.getFee().toString(), time.toString(), vehicles.toString()};
+
+        return result;    }
+
+    public String[] rentCarWeek(Integer time, Integer vehicles) {
 
         //Case car week
 
-        params.setTime(1);
-        params.setVehicles(1);
+        params.setTime(time);
+        params.setVehicles(vehicles);
+
         rentCarWeek.setParams(params);
         rentCarWeek.calculateFee();
 
-        System.out.print("<-- Rent car week: ");
-        System.out.println(rentCarWeek.printData());
-        System.out.println("-->");
+        String[] result = {rentCarWeek.data(), rentCarWeek.getFee().toString(), time.toString(), vehicles.toString()};
 
-        //Case car family
-        System.out.println("<-- Family rental car: ");
-
-        rentals = new ArrayList<Rental>();
-
-        paramsF1.setTime(1);
-        paramsF1.setVehicles(3);
-        fRentCarHour.setParams(paramsF1);
-        fRentCarHour.calculateFee();
-
-        paramsF2.setTime(1);
-        paramsF2.setVehicles(3);
-        fRentCarDay.setParams(paramsF2);
-        fRentCarDay.calculateFee();
-
-        paramsF3.setTime(1);
-        paramsF3.setVehicles(3);
-        fRentCarWeek.setParams(paramsF3);
-        fRentCarWeek.calculateFee();
-
-        rentals.add(fRentCarHour);
-        rentals.add(fRentCarDay);
-        rentals.add(fRentCarWeek);
-
-        rentFamily2.setRentals(rentals);
-
-        rentFamily2.calculateFee();
-
-        rentFamily2.printData();
-
-        System.out.println("Fee:");
-        System.out.println(rentFamily2.getFee());
-        System.out.println("Discount:");
-        System.out.println(rentFamily2.getDiscount());
-
-        System.out.println("-->");
-
-        //Family rental Mix
-
-        System.out.println("<-- Family rental mix: ");
-
-        rentals = new ArrayList<Rental>();
-
-        paramsF1.setTime(3);
-        paramsF1.setVehicles(5);
-        fMixRentBikeHour.setParams(paramsF1);
-        fMixRentBikeHour.calculateFee();
-
-        paramsF2.setTime(1);
-        paramsF2.setVehicles(4);
-        fMixRentCarWeek.setParams(paramsF2);
-        fMixRentCarWeek.calculateFee();
-
-
-        rentals.add(fMixRentBikeHour);
-        rentals.add(fMixRentCarWeek);
-
-        rentFamily3.setRentals(rentals);
-
-        rentFamily3.calculateFee();
-
-        rentFamily3.printData();
-
-        System.out.println("Fee:");
-        System.out.println(rentFamily3.getFee());
-        System.out.println("Discount:");
-        System.out.println(rentFamily3.getDiscount());
-
-        System.out.println("-->");
+        return result;
     }
 
-    public static void main(String[] args) {
+    public String[] rentFamily(ArrayList<String[]> rentals) {
 
+        String[] oRental = {};
+        ArrayList<String[]> resultRentals = new ArrayList<String[]>();
+
+        Iterator iter = rentals.iterator();
+
+        while (iter.hasNext()) {
+            String[] iRental = (String[])iter.next();
+            switch(iRental[0]) {
+                case "RentBikeHour":
+                    oRental = rentBikeHour(Integer.parseInt(iRental[1]), Integer.parseInt(iRental[2]));
+                    resultRentals.add(oRental);
+                    break;
+                case "RentBikeDay":
+                    oRental = rentBikeDay(Integer.parseInt(iRental[1]), Integer.parseInt(iRental[2]));
+                    resultRentals.add(oRental);
+                    break;
+                case "RentBikeWeek":
+                    oRental = rentBikeWeek(Integer.parseInt(iRental[1]), Integer.parseInt(iRental[2]));
+                    resultRentals.add(oRental);
+                    break;
+                case "RentCarHour":
+                    oRental = rentCarHour(Integer.parseInt(iRental[1]), Integer.parseInt(iRental[2]));
+                    resultRentals.add(oRental);
+                    break;
+                case "RentCarDay":
+                    oRental = rentCarDay(Integer.parseInt(iRental[1]), Integer.parseInt(iRental[2]));
+                    resultRentals.add(oRental);
+                    break;
+                case "RentCarWeek":
+                    oRental = rentCarWeek(Integer.parseInt(iRental[1]), Integer.parseInt(iRental[2]));
+                    resultRentals.add(oRental);
+                    break;
+            }
+        }
+
+        rentFamily.setRentals(resultRentals);
+
+        rentFamily.calculateFee();
+
+        String[] oData = {rentFamily.data(), rentFamily.getFee().toString()};
+
+        return oData;
 
     }
+
 }

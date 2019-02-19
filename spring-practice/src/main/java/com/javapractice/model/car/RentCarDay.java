@@ -33,7 +33,6 @@ public class RentCarDay implements Rental {
     }
 
     public void logValues() {
-        System.out.println("not implemented");
     }
 
     public Double getFee() {
@@ -48,7 +47,7 @@ public class RentCarDay implements Rental {
         this.costPerTimeUnit = costPerTimeUnit;
     }
 
-    public String printData() {
+    public String data() {
         return new String("You will rent " + this.params.getVehicles() + " cars for " + this.params.getTime() + " days for a total fee of " + this.fee);
     }
 }

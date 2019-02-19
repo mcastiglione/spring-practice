@@ -33,7 +33,6 @@ public class RentBikeWeek implements Rental {
     }
 
     public void logValues() {
-        System.out.println("not implemented");
     }
 
     public Double getFee() {
@@ -48,7 +47,7 @@ public class RentBikeWeek implements Rental {
         this.costPerTimeUnit = costPerTimeUnit;
     }
 
-    public String printData() {
+    public String data() {
         return new String("You will rent " + this.params.getVehicles() + " bikes for " + this.params.getTime() + " weeks for a total fee of " + this.fee);
     }
 }
