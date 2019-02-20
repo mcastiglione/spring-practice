@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class RentBikeHour implements Rental {
 
-    private Params params;
+    private transient Params params;
 
     @Value("${bike.hour}")
     private Integer costPerTimeUnit;

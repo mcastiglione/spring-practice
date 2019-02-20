@@ -1,11 +1,9 @@
 package com.javapractice.model;
 
-import java.util.ArrayList;
-
 public interface FamilyRental {
     boolean isInfoOK();
 
-    void calculateFee();
+    void process();
 
     void logValues();
 
@@ -17,5 +15,5 @@ public interface FamilyRental {
 
     String data();
 
-    void setRentals(ArrayList<String[]> rentals);
+    void setRentals(ParamsArr paramsArr);
 }
