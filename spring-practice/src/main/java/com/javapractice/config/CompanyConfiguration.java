@@ -1,8 +1,7 @@
 package com.javapractice.config;
 
-import com.google.gson.Gson;
+import com.javapractice.Company;
 import com.javapractice.model.Params;
-import com.javapractice.model.ParamsArr;
 import com.javapractice.model.bike.RentBikeDay;
 import com.javapractice.model.bike.RentBikeHour;
 import com.javapractice.model.bike.RentBikeWeek;
@@ -45,13 +44,6 @@ public class CompanyConfiguration {
 
     @Bean
     @Scope("prototype")
-    public ParamsArr paramsArr() {
-        return new ParamsArr();
-    }
-
-
-    @Bean
-    @Scope("prototype")
     public RentCarHour rentCarHour() {
         return new RentCarHour();
     }
@@ -75,8 +67,9 @@ public class CompanyConfiguration {
     }
 
     @Bean
-    public Gson gson() {
-        return new Gson();
+    @Scope("prototype")
+    public Company company() {
+        return new Company();
     }
 
 }

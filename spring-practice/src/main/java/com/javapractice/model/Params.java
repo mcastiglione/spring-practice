@@ -2,35 +2,15 @@ package com.javapractice.model;
 
 public class Params {
 
+    private Integer vehicles;
     private Integer time;
 
-    private String type;
-    private Integer vehicles;
-
-    public Params(int time, String type, int vehicles) {
-        this.time = time;
-        this.type = type;
+    public Params(int vehicles, int time) {
         this.vehicles = vehicles;
-
+        this.time = time;
     }
 
     public Params() {
-    }
-
-    public Integer getTime() {
-        return time;
-    }
-
-    public void setTime(Integer time) {
-        this.time = time;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public Integer getVehicles() {
@@ -39,5 +19,13 @@ public class Params {
 
     public void setVehicles(Integer vehicles) {
         this.vehicles = vehicles;
+    }
+
+    public Integer getTime() {
+        return time;
+    }
+
+    public void setTime(Integer time) {
+        this.time = time;
     }
 }

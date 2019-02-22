@@ -1,8 +1,6 @@
 package com.javapractice;
 
-import com.google.gson.Gson;
 import com.javapractice.model.Params;
-import com.javapractice.model.ParamsArr;
 import com.javapractice.model.Rental;
 import com.javapractice.model.bike.RentBikeDay;
 import com.javapractice.model.bike.RentBikeHour;
@@ -12,15 +10,10 @@ import com.javapractice.model.car.RentCarHour;
 import com.javapractice.model.car.RentCarWeek;
 import com.javapractice.utility.RentFamily;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-@RestController
-@SpringBootApplication
 public class Company {
 
     private ArrayList<Rental> rentals;
@@ -28,14 +21,7 @@ public class Company {
     Rental rental;
 
     @Autowired
-    private Gson gson;
-
-    @Autowired
     private Params params;
-
-    @Autowired
-    private ParamsArr paramsArr;
-
 
     @Autowired
     private RentFamily rentFamily;
@@ -61,70 +47,138 @@ public class Company {
     public Company() {
     }
 
-    @RequestMapping("/")
-    String home() {
-        return "Hello World!";
+    public String[] rentBikeHour(Integer time, Integer vehicles) {
+        //Case bike hour
+
+        params.setTime(time);
+        params.setVehicles(vehicles);
+
+        rentBikeHour.setParams(params);
+        rentBikeHour.calculateFee();
+
+        String[] result = {rentBikeHour.data(), rentBikeHour.getFee().toString(), time.toString(), vehicles.toString()};
+
+        return result;
     }
 
-    @RequestMapping(value = "/Rental", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    String Rental(@RequestBody String payload) {
+    public String[] rentBikeDay(Integer time, Integer vehicles) {
 
-        params = gson.fromJson(payload, Params.class);
+        //Case bike day
 
-        String type = params.getType();
+        params.setTime(time);
+        params.setVehicles(vehicles);
 
-        switch (type) {
-            case "RentBikeHour":
-                rentBikeHour.setParams(params);
-                rentBikeHour.calculateFee();
-                return gson.toJson(rentBikeHour);
+        rentBikeDay.setParams(params);
+        rentBikeDay.calculateFee();
 
-            case "RentBikeDay":
-                rentBikeDay.setParams(params);
-                rentBikeDay.calculateFee();
-                return gson.toJson(rentBikeDay);
+        String[] result = {rentBikeDay.data(), rentBikeDay.getFee().toString(), time.toString(), vehicles.toString()};
 
-            case "RentBikeWeek":
-                rentBikeWeek.setParams(params);
-                rentBikeWeek.calculateFee();
-                return gson.toJson(rentBikeWeek);
+        return result;
+    }
 
-            case "RentCarHour":
-                rentCarHour.setParams(params);
-                rentCarHour.calculateFee();
-                return gson.toJson(rentCarHour);
+    public String[] rentBikeWeek(Integer time, Integer vehicles) {
 
-            case "RentCarDay":
-                rentCarDay.setParams(params);
-                rentCarDay.calculateFee();
-                return gson.toJson(rentCarDay);
+        //Case bike week
 
-            case "RentCarWeek":
-                rentCarWeek.setParams(params);
-                rentCarWeek.calculateFee();
-                return gson.toJson(rentCarWeek);
+        params.setTime(time);
+        params.setVehicles(vehicles);
 
-            default:
-                return new String("{}");
+        rentBikeWeek.setParams(params);
+        rentBikeWeek.calculateFee();
 
+        String[] result = {rentBikeWeek.data(), rentBikeWeek.getFee().toString(), time.toString(), vehicles.toString()};
+
+        return result;
+    }
+
+    public String[] rentCarHour(Integer time, Integer vehicles) {
+
+        //Case car hour
+
+        params.setTime(time);
+        params.setVehicles(vehicles);
+
+        rentCarHour.setParams(params);
+        rentCarHour.calculateFee();
+
+        String[] result = {rentCarHour.data(), rentCarHour.getFee().toString(), time.toString(), vehicles.toString()};
+
+        return result;
+    }
+
+    public String[] rentCarDay(Integer time, Integer vehicles) {
+
+        //Case car day
+
+        params.setTime(time);
+        params.setVehicles(vehicles);
+
+        rentCarDay.setParams(params);
+        rentCarDay.calculateFee();
+
+        String[] result = {rentCarDay.data(), rentCarDay.getFee().toString(), time.toString(), vehicles.toString()};
+
+        return result;
+    }
+
+    public String[] rentCarWeek(Integer time, Integer vehicles) {
+
+        //Case car week
+
+        params.setTime(time);
+        params.setVehicles(vehicles);
+
+        rentCarWeek.setParams(params);
+        rentCarWeek.calculateFee();
+
+        String[] result = {rentCarWeek.data(), rentCarWeek.getFee().toString(), time.toString(), vehicles.toString()};
+
+        return result;
+    }
+
+    public String[] rentFamily(ArrayList<String[]> rentals) {
+
+        String[] oRental = {};
+        ArrayList<String[]> resultRentals = new ArrayList<String[]>();
+
+        Iterator iter = rentals.iterator();
+
+        while (iter.hasNext()) {
+            String[] iRental = (String[]) iter.next();
+            switch (iRental[0]) {
+                case "RentBikeHour":
+                    oRental = rentBikeHour(Integer.parseInt(iRental[1]), Integer.parseInt(iRental[2]));
+                    resultRentals.add(oRental);
+                    break;
+                case "RentBikeDay":
+                    oRental = rentBikeDay(Integer.parseInt(iRental[1]), Integer.parseInt(iRental[2]));
+                    resultRentals.add(oRental);
+                    break;
+                case "RentBikeWeek":
+                    oRental = rentBikeWeek(Integer.parseInt(iRental[1]), Integer.parseInt(iRental[2]));
+                    resultRentals.add(oRental);
+                    break;
+                case "RentCarHour":
+                    oRental = rentCarHour(Integer.parseInt(iRental[1]), Integer.parseInt(iRental[2]));
+                    resultRentals.add(oRental);
+                    break;
+                case "RentCarDay":
+                    oRental = rentCarDay(Integer.parseInt(iRental[1]), Integer.parseInt(iRental[2]));
+                    resultRentals.add(oRental);
+                    break;
+                case "RentCarWeek":
+                    oRental = rentCarWeek(Integer.parseInt(iRental[1]), Integer.parseInt(iRental[2]));
+                    resultRentals.add(oRental);
+                    break;
+            }
         }
-    }
 
+        rentFamily.setRentals(resultRentals);
 
-    @RequestMapping(value = "/RentalFamily", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    String RentalFamily(@RequestBody String payload) {
+        rentFamily.calculateFee();
 
-        paramsArr = gson.fromJson(payload, ParamsArr.class);
+        String[] oData = {rentFamily.data(), rentFamily.getFee().toString()};
 
-        rentFamily.setRentals(paramsArr);
-        rentFamily.process();
-
-        return gson.toJson(rentFamily);
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(Company.class, args);
+        return oData;
     }
 }
