@@ -1,7 +1,9 @@
 package com.javapractice.model;
 
+import java.util.Map;
+
 public interface FamilyRental {
-    boolean isInfoOK();
+    public boolean checkInfo();
 
     void process();
 
@@ -15,5 +17,5 @@ public interface FamilyRental {
 
     String data();
 
-    void setRentals(ParamsArr paramsArr);
+    void setRentals(Map<String, String> rentalData);
 }

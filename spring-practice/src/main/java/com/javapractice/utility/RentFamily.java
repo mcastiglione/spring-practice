@@ -1,8 +1,6 @@
 package com.javapractice.utility;
 
 import com.javapractice.model.FamilyRental;
-import com.javapractice.model.Params;
-import com.javapractice.model.ParamsArr;
 import com.javapractice.model.bike.RentBikeDay;
 import com.javapractice.model.bike.RentBikeHour;
 import com.javapractice.model.bike.RentBikeWeek;
@@ -14,13 +12,11 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
 
 public class RentFamily implements FamilyRental {
 
     private Double fee = 0.0;
-
-    @Autowired
-    private transient Params params;
 
     @Autowired
     private transient RentCarHour rentCarHour;
@@ -40,33 +36,56 @@ public class RentFamily implements FamilyRental {
     @Autowired
     private transient RentBikeWeek rentBikeWeek;
 
-    private transient ArrayList<Params> rentals;
+    private transient Map<String,String> rentalData;
+
+    private ArrayList<String[]> rentals;
 
     @Value("${family.discount}")
     private Integer discount;
 
     private Integer Qty = 0;
 
-    private ArrayList<String> data = new ArrayList<String>();
+    private ArrayList<String> data;
 
-    public RentFamily(ParamsArr paramsArr) {
-        this.rentals = paramsArr.getParams();
+    private String time;
+    private String vehicles;
+    private String type;
+
+    public RentFamily(Map<String, String> rentalData) {
+        this.rentalData = rentalData;
     }
 
     public RentFamily() {
     }
 
-    public void setRentals(ParamsArr paramsArr) {
-        this.rentals = paramsArr.getParams();
+    public void setRentals(Map<String, String> rentalData) {
+        this.rentalData = rentalData;
     }
 
     public boolean checkInfo() {
-        this.rentals.stream().forEach(y -> this.Qty += y.getVehicles());
+        this.rentals.stream().forEach(y -> this.Qty += Integer.parseInt(y[1]));
         return Qty <= 5 && Qty >= 3;
     }
 
-    public boolean isInfoOK() {
-        return false;
+    public void MapToArray() {
+        rentals = new ArrayList<String[]>();
+        for (int c = 1; c < 6; c++) {
+            time = rentalData.get("time" + c);
+            vehicles = rentalData.get("vehicles" + c);
+            type = rentalData.get("type" + c);
+
+            System.out.print(time + '\n');
+            System.out.print(vehicles + '\n');
+            System.out.print(type + '\n');
+
+            String[] rental = {time, vehicles, type};
+
+            System.out.println(rental);
+
+            if (time != null && vehicles != null && type != null) {
+                rentals.add(rental);
+            }
+        }
     }
 
     public void process() {
@@ -74,49 +93,60 @@ public class RentFamily implements FamilyRental {
         this.fee = 0.0;
         this.Qty = 0;
         data = new ArrayList<String>();
-
+        String[] rental;
         Iterator iter = this.rentals.iterator();
 
         while (iter.hasNext()) {
-            params = (Params) iter.next();
-            switch (params.getType()) {
+            rental = (String[])iter.next();
+
+            Integer time = Integer.parseInt(rental[0]);
+            Integer vehicles = Integer.parseInt(rental[1]);
+            String type = rental[2];
+
+            switch (type) {
                 case "RentBikeHour":
-                    rentBikeHour.setParams(params);
+                    rentBikeHour.setTime(time);
+                    rentBikeHour.setVehicles(vehicles);
                     rentBikeHour.calculateFee();
                     data.add(rentBikeHour.data());
                     this.fee += rentBikeHour.getFee();
                     this.Qty += rentBikeHour.getQty();
                     break;
                 case "RentBikeDay":
-                    rentBikeDay.setParams(params);
+                    rentBikeDay.setTime(time);
+                    rentBikeDay.setVehicles(vehicles);
                     rentBikeDay.calculateFee();
                     data.add(rentBikeDay.data());
                     this.fee += rentBikeDay.getFee();
                     this.Qty += rentBikeDay.getQty();
                     break;
                 case "RentBikeWeek":
-                    rentBikeWeek.setParams(params);
+                    rentBikeWeek.setTime(time);
+                    rentBikeWeek.setVehicles(vehicles);
                     rentBikeWeek.calculateFee();
                     data.add(rentBikeWeek.data());
                     this.fee += rentBikeWeek.getFee();
                     this.Qty += rentBikeWeek.getQty();
                     break;
                 case "RentCarHour":
-                    rentCarHour.setParams(params);
+                    rentCarHour.setTime(time);
+                    rentCarHour.setVehicles(vehicles);
                     rentCarHour.calculateFee();
                     data.add(rentCarHour.data());
                     this.fee += rentCarHour.getFee();
                     this.Qty += rentCarHour.getQty();
                     break;
                 case "RentCarDay":
-                    rentCarDay.setParams(params);
+                    rentCarDay.setTime(time);
+                    rentCarDay.setVehicles(vehicles);
                     rentCarDay.calculateFee();
                     data.add(rentCarDay.data());
                     this.fee += rentCarDay.getFee();
                     this.Qty += rentCarDay.getQty();
                     break;
                 case "RentCarWeek":
-                    rentCarWeek.setParams(params);
+                    rentCarWeek.setTime(time);
+                    rentCarWeek.setVehicles(vehicles);
                     rentCarWeek.calculateFee();
                     data.add(rentCarWeek.data());
                     this.fee += rentCarWeek.getFee();
@@ -149,7 +179,6 @@ public class RentFamily implements FamilyRental {
     public void setDiscount(Integer discount) {
         this.discount = discount;
     }
-
 
     public Integer getDiscount() {
         return discount;
