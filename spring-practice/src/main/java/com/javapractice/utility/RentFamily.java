@@ -36,7 +36,7 @@ public class RentFamily implements FamilyRental {
     @Autowired
     private transient RentBikeWeek rentBikeWeek;
 
-    private transient Map<String,String> rentalData;
+    private transient Map<String, String> rentalData;
 
     private ArrayList<String[]> rentals;
 
@@ -97,7 +97,7 @@ public class RentFamily implements FamilyRental {
         Iterator iter = this.rentals.iterator();
 
         while (iter.hasNext()) {
-            rental = (String[])iter.next();
+            rental = (String[]) iter.next();
 
             Integer time = Integer.parseInt(rental[0]);
             Integer vehicles = Integer.parseInt(rental[1]);
@@ -176,11 +176,11 @@ public class RentFamily implements FamilyRental {
         return data.toString();
     }
 
-    public void setDiscount(Integer discount) {
-        this.discount = discount;
-    }
-
     public Integer getDiscount() {
         return discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
     }
 }
