@@ -58,7 +58,7 @@ public class RentBikeController {
                 return new ResponseEntity(gson.toJson(rentBikeWeek), HttpStatus.OK);
 
             default:
-                return new ResponseEntity("{}", HttpStatus.NOT_FOUND);
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 

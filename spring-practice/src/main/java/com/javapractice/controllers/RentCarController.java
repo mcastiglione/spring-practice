@@ -57,7 +57,7 @@ public class RentCarController {
                 return new ResponseEntity(gson.toJson(rentCarWeek), HttpStatus.OK);
 
             default:
-                return new ResponseEntity("{}", HttpStatus.NOT_FOUND);
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
